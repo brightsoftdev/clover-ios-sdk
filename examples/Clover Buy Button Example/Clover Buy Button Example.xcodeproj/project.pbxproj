@@ -1,0 +1,310 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C4568DD14C48F7E00F77E77 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4568DC14C48F7E00F77E77 /* UIKit.framework */; };
+		2C4568DF14C48F7E00F77E77 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4568DE14C48F7E00F77E77 /* Foundation.framework */; };
+		2C4568E114C48F7E00F77E77 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4568E014C48F7E00F77E77 /* CoreGraphics.framework */; };
+		2C4568E714C48F7E00F77E77 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C4568E514C48F7E00F77E77 /* InfoPlist.strings */; };
+		2C4568E914C48F7E00F77E77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4568E814C48F7E00F77E77 /* main.m */; };
+		2C4568ED14C48F7E00F77E77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4568EC14C48F7E00F77E77 /* AppDelegate.m */; };
+		2C45690114C48FC500F77E77 /* Clover.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4568F614C48FC500F77E77 /* Clover.m */; };
+		2C45690314C48FC500F77E77 /* CloverButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4568FA14C48FC500F77E77 /* CloverButton.m */; };
+		2C45690914C490B600F77E77 /* CloverState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C45690814C490B600F77E77 /* CloverState.m */; };
+		2C45690C14C4955F00F77E77 /* CloverOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C45690B14C4955F00F77E77 /* CloverOrder.m */; };
+		2C45690F14C498A000F77E77 /* CloverRPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C45690E14C498A000F77E77 /* CloverRPC.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2C4568D814C48F7E00F77E77 /* Clover Buy Button Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Clover Buy Button Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C4568DC14C48F7E00F77E77 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2C4568DE14C48F7E00F77E77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2C4568E014C48F7E00F77E77 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2C4568E414C48F7E00F77E77 /* Clover Buy Button Example-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Clover Buy Button Example-Info.plist"; sourceTree = "<group>"; };
+		2C4568E614C48F7E00F77E77 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2C4568E814C48F7E00F77E77 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2C4568EA14C48F7E00F77E77 /* Clover Buy Button Example-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Clover Buy Button Example-Prefix.pch"; sourceTree = "<group>"; };
+		2C4568EB14C48F7E00F77E77 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2C4568EC14C48F7E00F77E77 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2C4568F514C48FC500F77E77 /* Clover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clover.h; sourceTree = "<group>"; };
+		2C4568F614C48FC500F77E77 /* Clover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clover.m; sourceTree = "<group>"; };
+		2C4568F914C48FC500F77E77 /* CloverButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloverButton.h; sourceTree = "<group>"; };
+		2C4568FA14C48FC500F77E77 /* CloverButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloverButton.m; sourceTree = "<group>"; };
+		2C45690714C490B600F77E77 /* CloverState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloverState.h; sourceTree = "<group>"; };
+		2C45690814C490B600F77E77 /* CloverState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloverState.m; sourceTree = "<group>"; };
+		2C45690A14C4955E00F77E77 /* CloverOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloverOrder.h; sourceTree = "<group>"; };
+		2C45690B14C4955F00F77E77 /* CloverOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloverOrder.m; sourceTree = "<group>"; };
+		2C45690D14C498A000F77E77 /* CloverRPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloverRPC.h; sourceTree = "<group>"; };
+		2C45690E14C498A000F77E77 /* CloverRPC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloverRPC.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2C4568D514C48F7E00F77E77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C4568DD14C48F7E00F77E77 /* UIKit.framework in Frameworks */,
+				2C4568DF14C48F7E00F77E77 /* Foundation.framework in Frameworks */,
+				2C4568E114C48F7E00F77E77 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2C4568CD14C48F7E00F77E77 = {
+			isa = PBXGroup;
+			children = (
+				2C4568E214C48F7E00F77E77 /* Clover Buy Button Example */,
+				2C4568DB14C48F7E00F77E77 /* Frameworks */,
+				2C4568D914C48F7E00F77E77 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2C4568D914C48F7E00F77E77 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2C4568D814C48F7E00F77E77 /* Clover Buy Button Example.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2C4568DB14C48F7E00F77E77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C4568DC14C48F7E00F77E77 /* UIKit.framework */,
+				2C4568DE14C48F7E00F77E77 /* Foundation.framework */,
+				2C4568E014C48F7E00F77E77 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2C4568E214C48F7E00F77E77 /* Clover Buy Button Example */ = {
+			isa = PBXGroup;
+			children = (
+				2C4568EB14C48F7E00F77E77 /* AppDelegate.h */,
+				2C4568EC14C48F7E00F77E77 /* AppDelegate.m */,
+				2C4568F314C48FA100F77E77 /* third party */,
+				2C4568E314C48F7E00F77E77 /* Supporting Files */,
+			);
+			path = "Clover Buy Button Example";
+			sourceTree = "<group>";
+		};
+		2C4568E314C48F7E00F77E77 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2C4568E414C48F7E00F77E77 /* Clover Buy Button Example-Info.plist */,
+				2C4568E514C48F7E00F77E77 /* InfoPlist.strings */,
+				2C4568E814C48F7E00F77E77 /* main.m */,
+				2C4568EA14C48F7E00F77E77 /* Clover Buy Button Example-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2C4568F314C48FA100F77E77 /* third party */ = {
+			isa = PBXGroup;
+			children = (
+				2C4568F414C48FC500F77E77 /* clover */,
+			);
+			name = "third party";
+			sourceTree = "<group>";
+		};
+		2C4568F414C48FC500F77E77 /* clover */ = {
+			isa = PBXGroup;
+			children = (
+				2C4568F514C48FC500F77E77 /* Clover.h */,
+				2C4568F614C48FC500F77E77 /* Clover.m */,
+				2C4568F914C48FC500F77E77 /* CloverButton.h */,
+				2C4568FA14C48FC500F77E77 /* CloverButton.m */,
+				2C45690A14C4955E00F77E77 /* CloverOrder.h */,
+				2C45690B14C4955F00F77E77 /* CloverOrder.m */,
+				2C45690D14C498A000F77E77 /* CloverRPC.h */,
+				2C45690E14C498A000F77E77 /* CloverRPC.m */,
+				2C45690714C490B600F77E77 /* CloverState.h */,
+				2C45690814C490B600F77E77 /* CloverState.m */,
+			);
+			name = clover;
+			path = ../../../clover;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2C4568D714C48F7E00F77E77 /* Clover Buy Button Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C4568F014C48F7E00F77E77 /* Build configuration list for PBXNativeTarget "Clover Buy Button Example" */;
+			buildPhases = (
+				2C4568D414C48F7E00F77E77 /* Sources */,
+				2C4568D514C48F7E00F77E77 /* Frameworks */,
+				2C4568D614C48F7E00F77E77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Clover Buy Button Example";
+			productName = "Clover Buy Button Example";
+			productReference = 2C4568D814C48F7E00F77E77 /* Clover Buy Button Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2C4568CF14C48F7E00F77E77 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 2C4568D214C48F7E00F77E77 /* Build configuration list for PBXProject "Clover Buy Button Example" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2C4568CD14C48F7E00F77E77;
+			productRefGroup = 2C4568D914C48F7E00F77E77 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2C4568D714C48F7E00F77E77 /* Clover Buy Button Example */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2C4568D614C48F7E00F77E77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C4568E714C48F7E00F77E77 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2C4568D414C48F7E00F77E77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C4568E914C48F7E00F77E77 /* main.m in Sources */,
+				2C4568ED14C48F7E00F77E77 /* AppDelegate.m in Sources */,
+				2C45690114C48FC500F77E77 /* Clover.m in Sources */,
+				2C45690314C48FC500F77E77 /* CloverButton.m in Sources */,
+				2C45690914C490B600F77E77 /* CloverState.m in Sources */,
+				2C45690C14C4955F00F77E77 /* CloverOrder.m in Sources */,
+				2C45690F14C498A000F77E77 /* CloverRPC.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2C4568E514C48F7E00F77E77 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C4568E614C48F7E00F77E77 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2C4568EE14C48F7E00F77E77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2C4568EF14C48F7E00F77E77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2C4568F114C48F7E00F77E77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Clover Buy Button Example/Clover Buy Button Example-Prefix.pch";
+				INFOPLIST_FILE = "Clover Buy Button Example/Clover Buy Button Example-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2C4568F214C48F7E00F77E77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Clover Buy Button Example/Clover Buy Button Example-Prefix.pch";
+				INFOPLIST_FILE = "Clover Buy Button Example/Clover Buy Button Example-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2C4568D214C48F7E00F77E77 /* Build configuration list for PBXProject "Clover Buy Button Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C4568EE14C48F7E00F77E77 /* Debug */,
+				2C4568EF14C48F7E00F77E77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C4568F014C48F7E00F77E77 /* Build configuration list for PBXNativeTarget "Clover Buy Button Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C4568F114C48F7E00F77E77 /* Debug */,
+				2C4568F214C48F7E00F77E77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2C4568CF14C48F7E00F77E77 /* Project object */;
+}
