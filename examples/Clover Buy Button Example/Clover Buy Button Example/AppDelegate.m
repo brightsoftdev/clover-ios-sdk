@@ -24,12 +24,16 @@
     [self.window setRootViewController:rootViewController];
     [self.window addSubview:[rootViewController view]];
     
-    [Clover setup:@"04c6441a-9bad-4d0f-9abd-bbb1f1b09048"];
-    CloverButton* buyButton = [Clover createButtonWithAmount:@"0.01" title:@"Test purchase"];
+    [Clover setup:@"58129cb7-1a1f-4cf3-8699-13f33bbaa6ae"];
+    CloverButton* buyButton = [Clover createButtonWithAmount:@"0.10" title:@"Test purchase"];
+    buyButton.permissions = @"full_name";
     buyButton.center = rootView.center;
     [rootView addSubview:buyButton];
     
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    if ([Clover handleOpenURL:url]) { return; }
+}
 @end

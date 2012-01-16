@@ -11,6 +11,7 @@
 
 @interface CloverButton (hidden)
 - (void)onButtonTapped:(UIButton*)button;
+- (NSDictionary*) getButtonProperties;
 @end
 
 @implementation CloverButton
@@ -38,11 +39,23 @@
         NSLog(@"Got RCP error:%@ response:%@", error, response);
     };
     
-    NSDictionary* params = [NSDictionary dictionaryWithObject:[[NSNumber numberWithInt:100] stringValue] forKey:@"amount"];
+    NSDictionary* params = [NSDictionary dictionaryWithObject:[self getButtonProperties] forKey:@"buttonProperties"];
     BOOL didOpenCloverApp = [CloverRPC sendToCloverApp:@"authorize_order_new" params:params handler:rpcHandler];
     if (!didOpenCloverApp) {
         NSLog(@"Show overlay");
     }
+}
+
+- getButtonProperties {
+    NSMutableDictionary* props = [NSMutableDictionary dictionary];
+    [props setValue:amount forKey:@"amount"];
+    [props setValue:title forKey:@"title"];
+    if (type) { [props setValue:type forKey:@"type"]; }
+    if (image) { [props setValue:image forKey:@"image"]; }
+    if (permissions) { [props setValue:permissions forKey:@"permissions"]; }
+    if (transaction_id) { [props setValue:transaction_id forKey:@"transaction_id"]; }
+    if (account) { [props setValue:account forKey:@"account"]; }
+    return props;
 }
 
 @end

@@ -19,15 +19,19 @@
 
 + (BOOL)sendToCloverApp:(NSString *)command params:(NSDictionary *)params handler:(_CloverRPCResponseHandler)handler {
     CloverState* state = [CloverState get];
+    
     NSString* callbackID = [NSString stringWithFormat:@"cb%d", state.callbackID++];
     [state.callbacks setValue:handler forKey:callbackID];
-    NSMutableDictionary* sendParams = [NSMutableDictionary dictionaryWithDictionary:params];
-    NSString* responseURL = [NSString stringWithFormat:@"%@//%@?__cloverResponse=", state.appUrlScheme, [self getRPCHostName]];
-    [sendParams setValue:responseURL forKey:@"responseURL"];
-    NSString* dataString = [self encodeURIComponent:[params JSONString]];
-    NSString* actionLinkVersion = @"1";
-    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"clover://HandleActionLink?%@&version=%@&data=%@", command, actionLinkVersion, dataString]];
     
+    NSMutableDictionary* data = [NSMutableDictionary dictionaryWithDictionary:params];
+    NSString* responseURL = [NSString stringWithFormat:@"%@://%@?cloverCallbackID=%@&cloverResponse=", state.appUrlScheme, [self getRPCHostName], callbackID];
+    [data setValue:responseURL forKey:@"responseURL"];
+    
+    NSString* dataString = [self encodeURIComponent:[data JSONString]];
+    NSString* protocolVersion = @"1";
+    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"clover://HandleActionLink?%@&version=%@&data=%@", command, protocolVersion, dataString]];
+    
+    NSLog(@"Send %@", [url  absoluteString]);
     return [[UIApplication sharedApplication] openURL:url];
 }
 
