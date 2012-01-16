@@ -42,4 +42,8 @@
     [CloverState get].phoneNumber = phoneNumber;
 }
 
++ (void)setUserEmailAddress:(NSString *)emailAddress {
+    
+}
+
 @end

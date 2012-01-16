@@ -19,8 +19,9 @@
 @property (atomic,retain) NSString* accountID;
 @property (atomic,retain) NSMutableDictionary* callbacks;
 @property (atomic,assign) NSInteger callbackID;
-@property (atomic,assign) NSString* appUrlScheme;
-@property (atomic,assign) NSString* mac;
-@property (atomic,assign) NSString* phoneNumber;
+@property (atomic,retain) NSString* appUrlScheme;
+@property (atomic,retain) NSString* mac;
+@property (atomic,retain) NSString* phoneNumber;
+@property (atomic,retain) NSString* emailAddress;
 
 @end
