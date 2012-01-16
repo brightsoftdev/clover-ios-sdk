@@ -18,7 +18,6 @@
     state.accountID = accountID;
     state.callbackID = 0;
     state.callbacks = [NSMutableDictionary dictionary];
-    NSLog(@"TODO read app url scheme from plist (throw if none available), and read mac");
     state.appUrlScheme = [CloverState getCurrentAppURLScheme];
     state.mac = [CloverState getMac];
 }
