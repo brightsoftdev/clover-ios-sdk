@@ -24,7 +24,7 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame = cloverButton.frame;
     [button setTitle:@"Buy now" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(_onButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:cloverButton action:@selector(_onButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [cloverButton addSubview:button];
     return cloverButton;
 }
