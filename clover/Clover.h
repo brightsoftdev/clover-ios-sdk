@@ -19,5 +19,6 @@ typedef void (^CloverOrderHandler)(CloverOrder* order);
 + (void) setup:(NSString*)accountID;
 + (CloverButton*) createButtonWithAmount:(NSString*)amount title:(NSString*)title;
 + (BOOL) handleOpenURL:(NSURL *)url;
++ (void) setUserPhoneNumber:(NSString*)phoneNumber;
 
 @end

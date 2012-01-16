@@ -21,5 +21,6 @@
 @property (atomic,assign) NSInteger callbackID;
 @property (atomic,assign) NSString* appUrlScheme;
 @property (atomic,assign) NSString* mac;
+@property (atomic,assign) NSString* phoneNumber;
 
 @end

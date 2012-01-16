@@ -38,4 +38,8 @@
     return [CloverRPC handleOpenURL:url];
 }
 
++ (void)setUserPhoneNumber:(NSString *)phoneNumber {
+    [CloverState get].phoneNumber = phoneNumber;
+}
+
 @end
