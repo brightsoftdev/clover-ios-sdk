@@ -10,7 +10,7 @@
 #import "CloverRPC.h"
 
 @interface CloverButton (hidden)
-- (void)_onButtonTapped:(UIButton*)button;
+- (void)onButtonTapped:(UIButton*)button;
 @end
 
 @implementation CloverButton
@@ -24,7 +24,7 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame = cloverButton.frame;
     [button setTitle:@"Buy now" forState:UIControlStateNormal];
-    [button addTarget:cloverButton action:@selector(_onButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:cloverButton action:@selector(onButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [cloverButton addSubview:button];
     return cloverButton;
 }
@@ -33,7 +33,7 @@
 
 @implementation CloverButton (hidden)
 
-- (void)_onButtonTapped:(UIButton*)button {
+- (void)onButtonTapped:(UIButton*)button {
     _CloverRPCResponseHandler rpcHandler = ^(NSString *error, NSDictionary *response) {
         NSLog(@"Got RCP error:%@ response:%@", error, response);
     };
