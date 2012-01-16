@@ -10,4 +10,6 @@
 
 @implementation CloverOrder
 
+@synthesize id, amount, title, created_on, client_order_id, status, permissions;
+
 @end

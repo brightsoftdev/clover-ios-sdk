@@ -10,6 +10,14 @@
 
 @interface CloverOrder : NSObject
 
+@property (atomic,retain) NSString* id;
+@property (atomic,retain) NSString* amount;
+@property (atomic,retain) NSString* title;
+@property (atomic,retain) NSNumber* created_on;
+@property (atomic,retain) NSString* client_order_id;
+@property (atomic,retain) NSString* status;
+@property (atomic,retain) NSDictionary* permissions;
+
 @end
 
 typedef void (^CloverOrderHandler)(CloverOrder* order);
