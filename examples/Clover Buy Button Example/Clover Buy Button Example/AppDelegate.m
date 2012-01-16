@@ -33,6 +33,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    if ([Clover handleOpenURL:url]) { return; }
+    if ([Clover handleOpenURL:url]) { return YES; }
+    return YES;
 }
 @end
