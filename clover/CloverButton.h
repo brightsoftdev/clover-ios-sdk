@@ -21,7 +21,7 @@
 // Optional
 @property (atomic,retain) NSString* image;
 @property (atomic,retain) NSString* permissions;
-@property (atomic,retain) NSString* transaction_id;
+@property (atomic,retain) NSString* client_order_id;
 @property (atomic,retain) NSString* account;
 
 + (CloverButton*) buttonWithType:(NSString*)type;

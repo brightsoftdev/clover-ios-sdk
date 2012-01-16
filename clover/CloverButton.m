@@ -16,7 +16,7 @@
 
 @implementation CloverButton
 
-@synthesize amount, title, type, image, permissions, transaction_id, account;
+@synthesize amount, title, type, image, permissions, client_order_id, account;
 
 + (CloverButton*)buttonWithType:(NSString *)type {
     if (![type isEqualToString:@"buy"]) { [NSException raise:@"Invalid button type" format:@"Invalid button type %@", type, nil]; }
@@ -53,7 +53,7 @@
     if (type) { [props setValue:type forKey:@"type"]; }
     if (image) { [props setValue:image forKey:@"image"]; }
     if (permissions) { [props setValue:permissions forKey:@"permissions"]; }
-    if (transaction_id) { [props setValue:transaction_id forKey:@"transaction_id"]; }
+    if (client_order_id) { [props setValue:client_order_id forKey:@"client_order_id"]; }
     if (account) { [props setValue:account forKey:@"account"]; }
     return props;
 }
