@@ -12,7 +12,7 @@ static CloverState* state;
 
 @implementation CloverState
 
-@synthesize accountID, callbacks, callbackID, appUrlScheme, mac, phoneNumber, emailAddress;
+@synthesize accountID, callbacks, callbackID, appUrlScheme, mac, phoneNumber, emailAddress, orderHandler;
 
 + (CloverState *)setup {
     if (state) { [NSException raise:@"Invalid call order" format:@"[Clover setup:accountID] called twice"]; }

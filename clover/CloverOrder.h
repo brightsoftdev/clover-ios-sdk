@@ -11,3 +11,5 @@
 @interface CloverOrder : NSObject
 
 @end
+
+typedef void (^CloverOrderHandler)(CloverOrder* order);

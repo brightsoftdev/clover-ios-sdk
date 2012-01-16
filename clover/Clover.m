@@ -33,17 +33,24 @@
     return button;
 }
 
++ (void)onOrder:(CloverOrderHandler)handler {
+    [CloverState assertState];
+    [CloverState get].orderHandler = handler;
+}
+
 + (BOOL)handleOpenURL:(NSURL *)url {
     [CloverState assertState];
     return [CloverRPC handleOpenURL:url];
 }
 
 + (void)setUserPhoneNumber:(NSString *)phoneNumber {
+    [CloverState assertState];
     [CloverState get].phoneNumber = phoneNumber;
 }
 
 + (void)setUserEmailAddress:(NSString *)emailAddress {
-    
+    [CloverState assertState];
+    [CloverState get].emailAddress = emailAddress;
 }
 
 @end

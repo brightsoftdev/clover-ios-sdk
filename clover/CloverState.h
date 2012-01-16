@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CloverOrder.h"
 
 @interface CloverState : NSObject
 
@@ -23,5 +24,6 @@
 @property (atomic,retain) NSString* mac;
 @property (atomic,retain) NSString* phoneNumber;
 @property (atomic,retain) NSString* emailAddress;
+@property (atomic,copy) CloverOrderHandler orderHandler;
 
 @end

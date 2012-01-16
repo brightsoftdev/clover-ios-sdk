@@ -10,14 +10,13 @@
 #import "CloverOrder.h"
 #import <Foundation/Foundation.h>
 
-typedef void (^CloverOrderHandler)(CloverOrder* order);
-
 @class CloverButton;
 
 @interface Clover : NSObject
 
 + (void) setup:(NSString*)accountID;
 + (CloverButton*) createButtonWithAmount:(NSString*)amount title:(NSString*)title;
++ (void) onOrder:(CloverOrderHandler)handler;
 + (BOOL) handleOpenURL:(NSURL *)url;
 
 + (void) setUserPhoneNumber:(NSString*)phoneNumber;

@@ -42,6 +42,16 @@
 + (BOOL)handleOpenURL:(NSURL *)url {
     if (![[url host] isEqualToString:[self getRPCHostName]]) { return NO; }
     NSLog(@"TODO handle action link response from Clover app %@", url);
+    
+    // Stub code for letting app know when order is authorized
+    BOOL isOrderAuthorizedResponse = false;
+    if (isOrderAuthorizedResponse) {
+        CloverOrderHandler orderHandler = [CloverState get].orderHandler;
+        CloverOrder* order = [[CloverOrder alloc] init];
+        NSLog(@"TODO populate order from response");
+        if (orderHandler) { orderHandler(order); }
+    }
+    
     return YES;
 }
 
