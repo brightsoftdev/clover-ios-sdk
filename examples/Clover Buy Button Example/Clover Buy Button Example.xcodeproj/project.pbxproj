@@ -18,6 +18,7 @@
 		2C45690914C490B600F77E77 /* CloverState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C45690814C490B600F77E77 /* CloverState.m */; };
 		2C45690C14C4955F00F77E77 /* CloverOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C45690B14C4955F00F77E77 /* CloverOrder.m */; };
 		2C45690F14C498A000F77E77 /* CloverRPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C45690E14C498A000F77E77 /* CloverRPC.m */; };
+		2CA20B7914C4A1D7008059AF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA20B7814C4A1D7008059AF /* JSONKit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		2C45690B14C4955F00F77E77 /* CloverOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloverOrder.m; sourceTree = "<group>"; };
 		2C45690D14C498A000F77E77 /* CloverRPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloverRPC.h; sourceTree = "<group>"; };
 		2C45690E14C498A000F77E77 /* CloverRPC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloverRPC.m; sourceTree = "<group>"; };
+		2CA20B7714C4A1D7008059AF /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		2CA20B7814C4A1D7008059AF /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +130,8 @@
 				2C45690E14C498A000F77E77 /* CloverRPC.m */,
 				2C45690714C490B600F77E77 /* CloverState.h */,
 				2C45690814C490B600F77E77 /* CloverState.m */,
+				2CA20B7714C4A1D7008059AF /* JSONKit.h */,
+				2CA20B7814C4A1D7008059AF /* JSONKit.m */,
 			);
 			name = clover;
 			path = ../../../clover;
@@ -200,6 +205,7 @@
 				2C45690914C490B600F77E77 /* CloverState.m in Sources */,
 				2C45690C14C4955F00F77E77 /* CloverOrder.m in Sources */,
 				2C45690F14C498A000F77E77 /* CloverRPC.m in Sources */,
+				2CA20B7914C4A1D7008059AF /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +309,7 @@
 				2C4568F214C48F7E00F77E77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

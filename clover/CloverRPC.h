@@ -13,7 +13,7 @@ typedef void (^_CloverRPCResponseHandler)(NSString* error, NSDictionary* respons
 @interface CloverRPC : NSObject
 
 + (BOOL) sendToCloverApp:(NSString*)command params:(NSDictionary*)params handler:(_CloverRPCResponseHandler)handler;
-
 + (NSString*) getRPCHostName;
++ (BOOL) handleOpenURL:(NSURL*)url;
 
 @end

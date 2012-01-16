@@ -33,9 +33,7 @@
 
 + (BOOL)handleOpenURL:(NSURL *)url {
     [CloverState assertState];
-    if (![[url host] isEqualToString:[CloverRPC getRPCHostName]]) { return NO; }
-    NSLog(@"TODO handle action link response from Clover app %@", url);
-    return YES;
+    return [CloverRPC handleOpenURL:url];
 }
 
 @end
