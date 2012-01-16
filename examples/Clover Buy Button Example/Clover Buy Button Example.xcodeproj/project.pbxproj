@@ -18,7 +18,7 @@
 		2C45690914C490B600F77E77 /* CloverState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C45690814C490B600F77E77 /* CloverState.m */; };
 		2C45690C14C4955F00F77E77 /* CloverOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C45690B14C4955F00F77E77 /* CloverOrder.m */; };
 		2C45690F14C498A000F77E77 /* CloverRPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C45690E14C498A000F77E77 /* CloverRPC.m */; };
-		2CA20B7914C4A1D7008059AF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA20B7814C4A1D7008059AF /* JSONKit.m */; };
+		2CA20B7914C4A1D7008059AF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA20B7814C4A1D7008059AF /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
