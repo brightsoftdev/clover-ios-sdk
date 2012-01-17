@@ -26,7 +26,7 @@ static CGFloat disappearDuration = 0.5;
         int padding = 10;
         int padding2 = padding * 2;
         UIView* border = [[UIView alloc] initWithFrame:CGRectMake(padding, padding, screen.size.width-padding2, screen.size.height-padding2)];
-        int borderSize = 8;
+        int borderSize = 5;
 
         // Set up the actual webview inside the border
         CGRect contentFrame = CGRectMake(padding + borderSize, padding + borderSize, screen.size.width - 2*borderSize - padding2, screen.size.height - 2*borderSize - padding2);
