@@ -17,6 +17,7 @@
 
 @property (nonatomic,retain) UIWebView *webView;
 @property (nonatomic,retain) UIButton *cancelButton;
+@property (nonatomic,retain)  UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) CloverViewJavascriptBridge *javascriptBridge;
 
 -(void) show;

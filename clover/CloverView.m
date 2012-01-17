@@ -10,12 +10,12 @@
 #import "CloverState.h"
 #import <QuartzCore/QuartzCore.h>
 
-static CGFloat appearDuration = 0.5;
-static CGFloat disappearDuration = 0.5;
+static CGFloat appearDuration = 0.4;
+static CGFloat disappearDuration = 0.4;
 
 @implementation CloverView
 
-@synthesize webView, cancelButton, javascriptBridge;
+@synthesize webView, cancelButton, activityIndicator, javascriptBridge;
 
 #pragma mark Regular controller methods
 
@@ -47,10 +47,16 @@ static CGFloat disappearDuration = 0.5;
         [self.cancelButton setTitle:@"Close" forState:UIControlStateNormal];
         [self.cancelButton addTarget:self action:@selector(shrinkAndCloseOverlay) forControlEvents:UIControlEventTouchUpInside];
 
+        // Setup the actvity spinner
+        self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        self.activityIndicator.center = CGPointMake(160, 240);
+        self.activityIndicator.hidesWhenStopped = YES;
+
         // Add them to the view
         [self addSubview:border];
         [self addSubview:webView];
         [self addSubview:cancelButton];
+        [self addSubview:activityIndicator];
 
         // Set the javascript bridge
         self.javascriptBridge = [CloverViewJavascriptBridge javascriptBridgeWithDelegate:self];
@@ -60,10 +66,6 @@ static CGFloat disappearDuration = 0.5;
 }
 
 - (void)show {
-    // Load URL in UIWebView
-    //NSURLRequest *requestObj = [NSURLRequest requestWithURL:webViewURL];
-    //[webView loadRequest:requestObj];
-
     // Fill the java script bridge with data we know about
     NSString* name = [CloverState get].fullName;
     NSString* phoneNumber = [CloverState get].phoneNumber;
@@ -79,6 +81,10 @@ static CGFloat disappearDuration = 0.5;
         [self.javascriptBridge sendMessage:mac toWebView:self.webView];
 
     // Load a test view
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.clover.com"]];
+    [webView loadRequest:requestObj];
+
+    /*
     [self.webView loadHTMLString:@""
         "<!doctype html>"
         "<html><head>"
@@ -98,7 +104,8 @@ static CGFloat disappearDuration = 0.5;
         "  }"
         "  </script>"
         "</body></html>" baseURL:nil];
- 
+    */
+
     UIWindow* window = [UIApplication sharedApplication].keyWindow;
     if (!window) {
         window = [[UIApplication sharedApplication].windows objectAtIndex:0];
@@ -147,10 +154,11 @@ static CGFloat disappearDuration = 0.5;
 
 - (void)webViewDidStartLoad:(UIWebView *)wv {
 	[activityIndicator startAnimating];
+    [activityIndicator setHidden:FALSE];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)wv {
-	[activityIndicator stopAnimating]; 
+	[activityIndicator stopAnimating];
 }
 
 - (void)webView:(UIWebView *)wv didFailLoadWithError:(NSError *)error {
