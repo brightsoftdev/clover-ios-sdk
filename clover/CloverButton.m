@@ -8,6 +8,7 @@
 
 #import "CloverButton.h"
 #import "CloverRPC.h"
+#import "CloverView.h"
 
 @interface CloverButton (hidden)
 - (void)onButtonTapped:(UIButton*)button;
@@ -22,13 +23,50 @@
     if (![type isEqualToString:@"buy"]) { [NSException raise:@"Invalid button type" format:@"Invalid button type %@", type, nil]; }
     CloverButton* cloverButton = [[CloverButton alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
     cloverButton.type = type;
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame = cloverButton.frame;
-    [button setTitle:@"Buy now" forState:UIControlStateNormal];
-    [button addTarget:cloverButton action:@selector(onButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [cloverButton addSubview:button];
+    [cloverButton setTitle:@"Buy now" forState:UIControlStateNormal];
+    [cloverButton addTarget:cloverButton action:@selector(onButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
     return cloverButton;
 }
+
+// Alows construction from both programmatically and in a xib
+- (id)initWithFrame:(CGRect)frame { 
+    self = [super initWithFrame:frame];    
+    if (self) {
+        // Set the background image (just a color more the current time)
+        // TODO make this look really nice!
+        [self setBackgroundColor:[UIColor colorWithRed:0.22 green:0.65 blue:0.20 alpha:1.0]];
+
+        // Set the background image (just a color more the current time)
+        // TODO make this look really nice!
+        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal]; 
+        [[self titleLabel] setShadowOffset:CGSizeMake(1.0, 1.0)];
+
+        // Bold the font (keep size set in nib)
+        UIFont* font = [[self titleLabel] font];
+        [[self titleLabel] setFont:[UIFont boldSystemFontOfSize:font.pointSize]]; 
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)inCoder {
+    if (self = [super initWithCoder:inCoder]) {
+        // Set the background image (just a color more the current time);
+        [self setBackgroundColor:[UIColor colorWithRed:0.22 green:0.65 blue:0.20 alpha:1.0]];
+
+        // Set the font
+        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal]; 
+        [[self titleLabel] setShadowOffset:CGSizeMake(1.0, 1.0)];
+
+        // Bold the font (keep size set in nib)
+        UIFont* font = [[self titleLabel] font];
+        [[self titleLabel] setFont:[UIFont boldSystemFontOfSize:font.pointSize]]; 
+    }
+    return self;
+}
+
 
 @end
 
@@ -43,6 +81,8 @@
     BOOL didOpenCloverApp = [CloverRPC sendToCloverApp:@"authorize_order_new" params:params handler:rpcHandler];
     if (!didOpenCloverApp) {
         NSLog(@"Show overlay");
+        CloverView *overlay = [[CloverView alloc] init];
+        [overlay show];
     }
 }
 

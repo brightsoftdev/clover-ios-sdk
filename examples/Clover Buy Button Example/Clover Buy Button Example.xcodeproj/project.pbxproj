@@ -19,6 +19,8 @@
 		2C45690C14C4955F00F77E77 /* CloverOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C45690B14C4955F00F77E77 /* CloverOrder.m */; };
 		2C45690F14C498A000F77E77 /* CloverRPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C45690E14C498A000F77E77 /* CloverRPC.m */; };
 		2CA20B7914C4A1D7008059AF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA20B7814C4A1D7008059AF /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4C82312614C5DD61004F74B1 /* CloverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C82312514C5DD61004F74B1 /* CloverView.m */; };
+		4C82313314C61C47004F74B1 /* CloverViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C82313214C61C47004F74B1 /* CloverViewJavascriptBridge.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,10 @@
 		2C45690E14C498A000F77E77 /* CloverRPC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloverRPC.m; sourceTree = "<group>"; };
 		2CA20B7714C4A1D7008059AF /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		2CA20B7814C4A1D7008059AF /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		4C82312414C5DD61004F74B1 /* CloverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloverView.h; sourceTree = "<group>"; };
+		4C82312514C5DD61004F74B1 /* CloverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloverView.m; sourceTree = "<group>"; };
+		4C82312F14C61646004F74B1 /* CloverViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloverViewJavascriptBridge.h; sourceTree = "<group>"; };
+		4C82313214C61C47004F74B1 /* CloverViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloverViewJavascriptBridge.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,10 @@
 				2C45690E14C498A000F77E77 /* CloverRPC.m */,
 				2C45690714C490B600F77E77 /* CloverState.h */,
 				2C45690814C490B600F77E77 /* CloverState.m */,
+				4C82312414C5DD61004F74B1 /* CloverView.h */,
+				4C82312514C5DD61004F74B1 /* CloverView.m */,
+				4C82312F14C61646004F74B1 /* CloverViewJavascriptBridge.h */,
+				4C82313214C61C47004F74B1 /* CloverViewJavascriptBridge.m */,
 				2CA20B7714C4A1D7008059AF /* JSONKit.h */,
 				2CA20B7814C4A1D7008059AF /* JSONKit.m */,
 			);
@@ -206,6 +216,8 @@
 				2C45690C14C4955F00F77E77 /* CloverOrder.m in Sources */,
 				2C45690F14C498A000F77E77 /* CloverRPC.m in Sources */,
 				2CA20B7914C4A1D7008059AF /* JSONKit.m in Sources */,
+				4C82312614C5DD61004F74B1 /* CloverView.m in Sources */,
+				4C82313314C61C47004F74B1 /* CloverViewJavascriptBridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

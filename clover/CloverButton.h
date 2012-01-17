@@ -12,7 +12,7 @@
 
 @class Clover;
 
-@interface CloverButton : UIView
+@interface CloverButton : UIButton
 
 // Required
 @property (atomic,retain) NSString* amount;
