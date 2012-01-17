@@ -10,11 +10,12 @@
 #import "CloverState.h"
 #import <QuartzCore/QuartzCore.h>
 
-static CGFloat transitionDuration = 0.6;
+static CGFloat appearDuration = 0.5;
+static CGFloat disappearDuration = 1.0;
 
 @implementation CloverView
 
-@synthesize webView, webViewURL, javascriptBridge;
+@synthesize webView, cancelButton, javascriptBridge;
 
 #pragma mark Regular controller methods
 
@@ -26,6 +27,7 @@ static CGFloat transitionDuration = 0.6;
         int padding2 = padding * 2;
         UIView* border = [[UIView alloc] initWithFrame:CGRectMake(padding, padding, screen.size.width-padding2, screen.size.height-padding2)];
         int borderSize = 8;
+
         // Set up the actual webview inside the border
         CGRect contentFrame = CGRectMake(padding + borderSize, padding + borderSize, screen.size.width - 2*borderSize - padding2, screen.size.height - 2*borderSize - padding2);
         self.webView = [[UIWebView alloc] initWithFrame:contentFrame];
@@ -36,76 +38,95 @@ static CGFloat transitionDuration = 0.6;
         border.backgroundColor = [UIColor colorWithRed:0.22 green:0.65 blue:0.20 alpha:0.7];
         self.backgroundColor = [UIColor clearColor];
         
+        // Set up the cancel / close button
+        // TODO style
+        CGRect buttonFrame = CGRectMake(screen.size.width-60,5, 50, 20);
+        self.cancelButton = [[UIButton alloc] initWithFrame:buttonFrame];
+        [self.cancelButton setBackgroundColor:[UIColor lightGrayColor]];
+        [[self.cancelButton titleLabel] setFont:[UIFont boldSystemFontOfSize:12.0]]; 
+        [self.cancelButton setTitle:@"Close" forState:UIControlStateNormal];
+        [self.cancelButton addTarget:self action:@selector(fadeAndCloseOverlay) forControlEvents:UIControlEventTouchUpInside];
+
         // Add them to the view
         [self addSubview:border];
         [self addSubview:webView];
+        [self addSubview:cancelButton];
 
         // Set the javascript bridge
         self.javascriptBridge = [CloverViewJavascriptBridge javascriptBridgeWithDelegate:self];
         webView.delegate = self.javascriptBridge;
-
-        // Set the url TEMP
-        self.webViewURL = [NSURL URLWithString:@"http://www.clover.com/"];
     }
     return self;
 }
 
 - (void)show {
-	if (webViewURL != nil) {
-        // Load URL in UIWebView
-		//NSURLRequest *requestObj = [NSURLRequest requestWithURL:webViewURL];
-        //[webView loadRequest:requestObj];
+    // Load URL in UIWebView
+    //NSURLRequest *requestObj = [NSURLRequest requestWithURL:webViewURL];
+    //[webView loadRequest:requestObj];
 
-        // Fill the java script bridge with data we know about
-        NSString* name = [CloverState get].fullName;
-        NSString* phoneNumber = [CloverState get].phoneNumber;
-        NSString* email = [CloverState get].emailAddress;
-        NSString* mac = [CloverState getMac];
-        if (name)
-            [self.javascriptBridge sendMessage:name toWebView:self.webView];
-        if (phoneNumber)
-            [self.javascriptBridge sendMessage:phoneNumber toWebView:self.webView];
-        if (email)
-            [self.javascriptBridge sendMessage:email toWebView:self.webView];
-        if (mac)
-            [self.javascriptBridge sendMessage:mac toWebView:self.webView];
+    // Fill the java script bridge with data we know about
+    NSString* name = [CloverState get].fullName;
+    NSString* phoneNumber = [CloverState get].phoneNumber;
+    NSString* email = [CloverState get].emailAddress;
+    NSString* mac = [CloverState getMac];
+    if (name)
+        [self.javascriptBridge sendMessage:name toWebView:self.webView];
+    if (phoneNumber)
+        [self.javascriptBridge sendMessage:phoneNumber toWebView:self.webView];
+    if (email)
+        [self.javascriptBridge sendMessage:email toWebView:self.webView];
+    if (mac)
+        [self.javascriptBridge sendMessage:mac toWebView:self.webView];
 
-        // Load a test view
-        [self.webView loadHTMLString:@""
-         "<!doctype html>"
-         "<html><head>"
-         "  <style type='text/css'>h1 { color:red; }</style>"
-         "</head><body>"
-         "  <h1>Test Clover Overlay</h1>"
-         "  <script>"
-         "  document.addEventListener('WebViewJavascriptBridgeReady', onBridgeReady, false);"
-         "  function onBridgeReady() {"
-         "      WebViewJavascriptBridge.setMessageHandler(function(message) {"
-         "          var el = document.body.appendChild(document.createElement('div'));"
-         "          el.innerHTML = message;"
-         "      });"
-         "      var button = document.body.appendChild(document.createElement('button'));"
-         "      button.innerHTML = 'Buy something';"
-         "      button.onclick = button.ontouchstart = function() { WebViewJavascriptBridge.sendMessage('from the button'); };"
-         "  }"
-         "  </script>"
-         "</body></html>" baseURL:nil];
+    // Load a test view
+    [self.webView loadHTMLString:@""
+        "<!doctype html>"
+        "<html><head>"
+        "  <style type='text/css'>h1 { color:red; }</style>"
+        "</head><body>"
+        "  <h1>Test Clover Overlay</h1>"
+        "  <script>"
+        "  document.addEventListener('WebViewJavascriptBridgeReady', onBridgeReady, false);"
+        "  function onBridgeReady() {"
+        "      WebViewJavascriptBridge.setMessageHandler(function(message) {"
+        "          var el = document.body.appendChild(document.createElement('div'));"
+        "          el.innerHTML = message;"
+        "      });"
+        "      var button = document.body.appendChild(document.createElement('button'));"
+        "      button.innerHTML = 'Buy something';"
+        "      button.onclick = button.ontouchstart = function() { WebViewJavascriptBridge.sendMessage('from the button'); };"
+        "  }"
+        "  </script>"
+        "</body></html>" baseURL:nil];
  
-        UIWindow* window = [UIApplication sharedApplication].keyWindow;
-        if (!window) {
-            window = [[UIApplication sharedApplication].windows objectAtIndex:0];
-        }
+    UIWindow* window = [UIApplication sharedApplication].keyWindow;
+    if (!window) {
+        window = [[UIApplication sharedApplication].windows objectAtIndex:0];
+    }
 
-        self.transform = CGAffineTransformScale([self transformForOrientation], 0.001, 0.001);
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:transitionDuration/1.5];
-        [UIView setAnimationDelegate:self];
-        [UIView setAnimationDidStopSelector:@selector(bounce1AnimationStopped)];
-        self.transform = CGAffineTransformScale([self transformForOrientation], 1.1, 1.1);
-        [UIView commitAnimations];
-        
-        [window addSubview:self];
-	}
+    // Animate the window (expand)
+    self.transform = CGAffineTransformScale([self transformForOrientation], 0.001, 0.001);
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:appearDuration];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(animationOutStopped)];
+    self.transform = CGAffineTransformScale([self transformForOrientation], 1.0, 1.0);
+    [UIView commitAnimations];
+
+    [window addSubview:self];
+}
+
+- (void) closeOverlay {
+    [self removeFromSuperview];
+}
+
+- (void) fadeAndCloseOverlay {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:disappearDuration];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(closeOverlay)];
+    self.alpha = 0;
+    [UIView commitAnimations];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -141,7 +162,7 @@ static CGFloat transitionDuration = 0.6;
 }
 
 #pragma mark Animations
-// Some basic aminmation handling ... todo make less 'facebook' like
+// Some basic aminmation handling
 - (CGAffineTransform)transformForOrientation {
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     if (orientation == UIInterfaceOrientationLandscapeLeft) {
@@ -155,21 +176,10 @@ static CGFloat transitionDuration = 0.6;
     }
 }
 
-- (void)bounce1AnimationStopped {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:transitionDuration/2];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(bounce2AnimationStopped)];
-    self.transform = CGAffineTransformScale([self transformForOrientation], 0.9, 0.9);
-    [UIView commitAnimations];
+- (void)animationOutStopped {
+  
 }
 
-- (void)bounce2AnimationStopped {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:transitionDuration/2];
-    self.transform = [self transformForOrientation];
-    [UIView commitAnimations];
-}
 
 
 #pragma mark Memory management

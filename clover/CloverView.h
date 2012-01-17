@@ -11,20 +11,20 @@
 
 @interface CloverView : UIView <CloverViewJavascriptBridgeDelegate> {
 	IBOutlet UIWebView *webView;
-	IBOutlet UIActivityIndicatorView *activityIndicator;
-    
-	NSURL *webViewURL;	
+	IBOutlet UIButton *cancelButton;
+    IBOutlet UIActivityIndicatorView *activityIndicator;
 }
 
 @property (nonatomic,retain) UIWebView *webView;
-@property (nonatomic,retain) NSURL *webViewURL;
+@property (nonatomic,retain) UIButton *cancelButton;
 @property (strong, nonatomic) CloverViewJavascriptBridge *javascriptBridge;
 
 -(void) show;
+-(void) closeOverlay;
+-(void) fadeAndCloseOverlay;
 
 // Animations
 - (CGAffineTransform)transformForOrientation;
-- (void)bounce1AnimationStopped;
-- (void)bounce2AnimationStopped;
+- (void)animationOutStopped;
 
 @end
