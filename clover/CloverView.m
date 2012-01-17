@@ -19,7 +19,7 @@ static CGFloat transitionDuration = 0.6;
 #pragma mark Regular controller methods
 
 - (id)init {
-    CGRect screen = [[UIScreen mainScreen] bounds];
+    CGRect screen = [UIScreen mainScreen].applicationFrame;
     if (self == [super initWithFrame:screen]) {
         // Setup the green border
         int padding = 10;
