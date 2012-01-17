@@ -11,7 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 static CGFloat appearDuration = 0.5;
-static CGFloat disappearDuration = 1.0;
+static CGFloat disappearDuration = 0.5;
 
 @implementation CloverView
 
@@ -45,7 +45,7 @@ static CGFloat disappearDuration = 1.0;
         [self.cancelButton setBackgroundColor:[UIColor lightGrayColor]];
         [[self.cancelButton titleLabel] setFont:[UIFont boldSystemFontOfSize:12.0]]; 
         [self.cancelButton setTitle:@"Close" forState:UIControlStateNormal];
-        [self.cancelButton addTarget:self action:@selector(fadeAndCloseOverlay) forControlEvents:UIControlEventTouchUpInside];
+        [self.cancelButton addTarget:self action:@selector(shrinkAndCloseOverlay) forControlEvents:UIControlEventTouchUpInside];
 
         // Add them to the view
         [self addSubview:border];
@@ -128,6 +128,16 @@ static CGFloat disappearDuration = 1.0;
     self.alpha = 0;
     [UIView commitAnimations];
 }
+
+- (void) shrinkAndCloseOverlay {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:disappearDuration];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(closeOverlay)];
+    self.transform = CGAffineTransformScale([self transformForOrientation], 0.001, 0.001);
+    [UIView commitAnimations];
+}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return YES;

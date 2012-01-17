@@ -22,6 +22,7 @@
 -(void) show;
 -(void) closeOverlay;
 -(void) fadeAndCloseOverlay;
+-(void) shrinkAndCloseOverlay;
 
 // Animations
 - (CGAffineTransform)transformForOrientation;
