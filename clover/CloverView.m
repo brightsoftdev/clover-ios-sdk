@@ -15,11 +15,11 @@ static CGFloat disappearDuration = 0.4;
 
 @implementation CloverView
 
-@synthesize webView, cancelButton, activityIndicator, javascriptBridge;
+@synthesize webView, cancelButton, activityIndicator, buttonProperties, javascriptBridge;
 
 #pragma mark Regular controller methods
 
-- (id)init {
+- (id) initWithButtonProperties:(NSDictionary*)_buttonProperties {
     CGRect screen = [UIScreen mainScreen].applicationFrame;
     if (self == [super initWithFrame:screen]) {
         // Setup the green border
@@ -61,15 +61,18 @@ static CGFloat disappearDuration = 0.4;
         // Set the javascript bridge
         self.javascriptBridge = [CloverViewJavascriptBridge javascriptBridgeWithDelegate:self];
         webView.delegate = self.javascriptBridge;
+
+        // Set the button properties
+        self.buttonProperties = _buttonProperties;
     }
     return self;
 }
 
 - (void)show {
     // Load a test view
-    //NSURLRequest *requestObj = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.clover.com"]];
-    //[webView loadRequest:requestObj];
-    [self localTest];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.clover.com"]];
+    [webView loadRequest:requestObj];
+    //[self localTest];
 
     // Fill the java script bridge with data we know about
     [self populateWithKnownData];
@@ -168,19 +171,21 @@ static CGFloat disappearDuration = 0.4;
 }
 
 -(void) populateWithKnownData {
-    // Fill the java script bridge with data we know about
-    NSString* name = [CloverState get].fullName;
-    NSString* phoneNumber = [CloverState get].phoneNumber;
-    NSString* email = [CloverState get].emailAddress;
-    NSString* mac = [CloverState getMac];
-    if (name)
-        [self.javascriptBridge sendMessage:[NSString stringWithFormat:@"fullName=%@",name] toWebView:self.webView];
-    if (phoneNumber)
-        [self.javascriptBridge sendMessage:[NSString stringWithFormat:@"phoneNumber=%@",phoneNumber] toWebView:self.webView];
-    if (email)
-        [self.javascriptBridge sendMessage:[NSString stringWithFormat:@"emailAddress=%@",email] toWebView:self.webView];
-    if (mac)
-        [self.javascriptBridge sendMessage:[NSString stringWithFormat:@"mac=%@",mac] toWebView:self.webView];
+    NSMutableDictionary* info = [NSMutableDictionary dictionary];
+
+    // Fill the dictionary with data we know about
+    [info setObject:[CloverState get].fullName forKey:@"fullName"];
+    [info setObject:[CloverState get].phoneNumber forKey:@"phoneNumber"];
+    [info setObject:[CloverState get].emailAddress forKey:@"emailAddress"];
+    [info setObject:[CloverState getMac] forKey:@"mac"];
+    [info setObject:buttonProperties forKey:@"buttonProperties"];
+
+    // Create the json object
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:info options:NSJSONWritingPrettyPrinted error:nil];
+    NSString* jsonSummary = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+
+    // Send the json to the webview
+    [self.javascriptBridge sendMessage:jsonSummary toWebView:self.webView];
 }
 
 - (void)localTest {

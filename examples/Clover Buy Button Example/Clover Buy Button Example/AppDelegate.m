@@ -28,7 +28,7 @@
     [Clover setUserFullName:@"Jack Clover"];
     [Clover setUserEmailAddress:@"jack@clover.com"];
     CloverButton* buyButton = [Clover createButtonWithAmount:@"0.10" title:@"Test purchase"];
-    buyButton.permissions = @"full_name";
+    buyButton.permissions = @"full_name, phone_number";
     buyButton.center = rootView.center;
     [rootView addSubview:buyButton];
     

@@ -13,12 +13,17 @@
 	IBOutlet UIWebView *webView;
 	IBOutlet UIButton *cancelButton;
     IBOutlet UIActivityIndicatorView *activityIndicator;
+    NSDictionary* buttonProperties;
 }
 
 @property (nonatomic,retain) UIWebView *webView;
 @property (nonatomic,retain) UIButton *cancelButton;
 @property (nonatomic,retain)  UIActivityIndicatorView *activityIndicator;
+@property (nonatomic,retain)  NSDictionary *buttonProperties;
 @property (strong, nonatomic) CloverViewJavascriptBridge *javascriptBridge;
+
+// Additional Constructors
+-(id) initWithButtonProperties:(NSDictionary*)_buttonProperties;
 
 // Showing / hiding the overlay
 -(void) show;

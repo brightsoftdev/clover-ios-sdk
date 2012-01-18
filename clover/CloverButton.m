@@ -81,7 +81,7 @@
     BOOL didOpenCloverApp = [CloverRPC sendToCloverApp:@"authorize_order_new" params:params handler:rpcHandler];
     if (!didOpenCloverApp) {
         NSLog(@"Show overlay");
-        CloverView *overlay = [[CloverView alloc] init];
+        CloverView *overlay = [[CloverView alloc] initWithButtonProperties:[self getButtonProperties]];
         [overlay show];
     }
 }
