@@ -34,7 +34,7 @@
     
     [Clover onOrder:^(CloverOrder* order) {
         /* user order here */
-    }
+    }];
     
     return YES;
 }
