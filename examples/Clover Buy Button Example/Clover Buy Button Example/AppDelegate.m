@@ -24,6 +24,9 @@
     [self.window addSubview:[rootViewController view]];
     
     [Clover setup:@"58129cb7-1a1f-4cf3-8699-13f33bbaa6ae"];
+    [Clover setUserPhoneNumber:@"555-555-5556"];
+    [Clover setUserFullName:@"Jack Clover"];
+    [Clover setUserEmailAddress:@"jack@clover.com"];
     CloverButton* buyButton = [Clover createButtonWithAmount:@"0.10" title:@"Test purchase"];
     buyButton.permissions = @"full_name";
     buyButton.center = rootView.center;

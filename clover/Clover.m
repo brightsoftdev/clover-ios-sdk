@@ -53,4 +53,9 @@
     [CloverState get].emailAddress = emailAddress;
 }
 
++ (void)setUserFullName:(NSString *)fullName {
+    [CloverState assertState];
+    [CloverState get].fullName = fullName;
+}
+
 @end

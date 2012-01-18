@@ -20,6 +20,7 @@
 @property (nonatomic,retain)  UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) CloverViewJavascriptBridge *javascriptBridge;
 
+// Showing / hiding the overlay
 -(void) show;
 -(void) closeOverlay;
 -(void) fadeAndCloseOverlay;
@@ -28,5 +29,9 @@
 // Animations
 - (CGAffineTransform)transformForOrientation;
 - (void)animationOutStopped;
+
+// Filling with known data
+- (void) populateWithKnownData;
+- (void) localTest;
 
 @end

@@ -66,46 +66,15 @@ static CGFloat disappearDuration = 0.4;
 }
 
 - (void)show {
-    // Fill the java script bridge with data we know about
-    NSString* name = [CloverState get].fullName;
-    NSString* phoneNumber = [CloverState get].phoneNumber;
-    NSString* email = [CloverState get].emailAddress;
-    NSString* mac = [CloverState getMac];
-    if (name)
-        [self.javascriptBridge sendMessage:name toWebView:self.webView];
-    if (phoneNumber)
-        [self.javascriptBridge sendMessage:phoneNumber toWebView:self.webView];
-    if (email)
-        [self.javascriptBridge sendMessage:email toWebView:self.webView];
-    if (mac)
-        [self.javascriptBridge sendMessage:mac toWebView:self.webView];
-
     // Load a test view
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.clover.com"]];
-    [webView loadRequest:requestObj];
+    //NSURLRequest *requestObj = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.clover.com"]];
+    //[webView loadRequest:requestObj];
+    [self localTest];
 
-    /*
-    [self.webView loadHTMLString:@""
-        "<!doctype html>"
-        "<html><head>"
-        "  <style type='text/css'>h1 { color:red; }</style>"
-        "</head><body>"
-        "  <h1>Test Clover Overlay</h1>"
-        "  <script>"
-        "  document.addEventListener('WebViewJavascriptBridgeReady', onBridgeReady, false);"
-        "  function onBridgeReady() {"
-        "      WebViewJavascriptBridge.setMessageHandler(function(message) {"
-        "          var el = document.body.appendChild(document.createElement('div'));"
-        "          el.innerHTML = message;"
-        "      });"
-        "      var button = document.body.appendChild(document.createElement('button'));"
-        "      button.innerHTML = 'Buy something';"
-        "      button.onclick = button.ontouchstart = function() { WebViewJavascriptBridge.sendMessage('from the button'); };"
-        "  }"
-        "  </script>"
-        "</body></html>" baseURL:nil];
-    */
-
+    // Fill the java script bridge with data we know about
+    [self populateWithKnownData];
+    
+    // Find the front window and then show the overlay
     UIWindow* window = [UIApplication sharedApplication].keyWindow;
     if (!window) {
         window = [[UIApplication sharedApplication].windows objectAtIndex:0];
@@ -198,7 +167,73 @@ static CGFloat disappearDuration = 0.4;
   
 }
 
+-(void) populateWithKnownData {
+    // Fill the java script bridge with data we know about
+    NSString* name = [CloverState get].fullName;
+    NSString* phoneNumber = [CloverState get].phoneNumber;
+    NSString* email = [CloverState get].emailAddress;
+    NSString* mac = [CloverState getMac];
+    if (name)
+        [self.javascriptBridge sendMessage:[NSString stringWithFormat:@"fullName=%@",name] toWebView:self.webView];
+    if (phoneNumber)
+        [self.javascriptBridge sendMessage:[NSString stringWithFormat:@"phoneNumber=%@",phoneNumber] toWebView:self.webView];
+    if (email)
+        [self.javascriptBridge sendMessage:[NSString stringWithFormat:@"emailAddress=%@",email] toWebView:self.webView];
+    if (mac)
+        [self.javascriptBridge sendMessage:[NSString stringWithFormat:@"mac=%@",mac] toWebView:self.webView];
+}
 
+- (void)localTest {
+    [self.webView loadHTMLString:@""
+     "<!doctype html>"
+     "<html><head>"
+     "  <style type='text/css'>h1 { color:red; }</style>"
+     "</head><body>"
+     "  <h1>Clover Signup</h1>"
+     "  <script>"
+     "  document.addEventListener('WebViewJavascriptBridgeReady', onBridgeReady, false);"
+     "  function onBridgeReady() {"
+     "      var name = document.body.appendChild(document.createElement('text'));"    
+     "      name.innerHTML = 'Name';"
+     "      var nameArea = document.body.appendChild(document.createElement('TEXTAREA'));"
+     "      document.body.appendChild(document.createElement('div'));"
+     ""
+     "      var email = document.body.appendChild(document.createElement('text'));"    
+     "      email.innerHTML = 'email';"
+     "      var emailArea = document.body.appendChild(document.createElement('TEXTAREA'));"
+     "      document.body.appendChild(document.createElement('div'));"
+     ""
+     "      var phone = document.body.appendChild(document.createElement('text'));"    
+     "      phone.innerHTML = 'Phone';"
+     "      var phoneArea = document.body.appendChild(document.createElement('TEXTAREA'));"
+     "      document.body.appendChild(document.createElement('div'));"
+     ""
+     "      var mac = document.body.appendChild(document.createElement('text'));"    
+     "      mac.innerHTML = 'mac';"
+     "      var macArea = document.body.appendChild(document.createElement('TEXTAREA'));"
+     "      document.body.appendChild(document.createElement('div'));"
+     ""
+     "      var button = document.body.appendChild(document.createElement('button'));"
+     "      button.innerHTML = 'Buy';"
+     "      button.onclick = button.ontouchstart = function() { WebViewJavascriptBridge.sendMessage('from the button'); };"
+     "      WebViewJavascriptBridge.setMessageHandler(function(message) {"
+     "          if (message.indexOf('mac=')>=0) {"
+     "              macArea.innerHTML = message.replace('mac=','')"
+     "          }"     
+     "          if (message.indexOf('fullName=')>=0) {"
+     "              nameArea.innerHTML = message.replace('fullName=','')"
+     "          }"
+     "          if (message.indexOf('emailAddress=')>=0) {"
+     "              emailArea.innerHTML = message.replace('emailAddress=','')"
+     "          }"
+     "          if (message.indexOf('phoneNumber=')>=0) {"
+     "              phoneArea.innerHTML = message.replace('phoneNumber=','')"
+     "          }"
+     "      });"
+     "  }"
+     "  </script>"
+     "</body></html>" baseURL:nil];
+}
 
 #pragma mark Memory management
 // TODO dealloc maybe

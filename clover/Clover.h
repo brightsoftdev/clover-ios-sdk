@@ -21,5 +21,6 @@
 
 + (void) setUserPhoneNumber:(NSString*)phoneNumber;
 + (void) setUserEmailAddress:(NSString*)emailAddress;
++ (void) setUserFullName:(NSString*)fullName;
 
 @end
