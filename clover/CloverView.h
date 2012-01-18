@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Clover. All rights reserved.
 //
 
-#import "CloverViewJavascriptBridge.h"
+#import "WebViewJavascriptBridge.h"
 #import <UIKit/UIKit.h>
 
-@interface CloverView : UIView <CloverViewJavascriptBridgeDelegate> {
+@interface CloverView : UIView <WebViewJavascriptBridgeDelegate> {
 	IBOutlet UIWebView *webView;
 	IBOutlet UIButton *cancelButton;
     IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -20,7 +20,7 @@
 @property (nonatomic,retain) UIButton *cancelButton;
 @property (nonatomic,retain)  UIActivityIndicatorView *activityIndicator;
 @property (nonatomic,retain)  NSDictionary *buttonProperties;
-@property (strong, nonatomic) CloverViewJavascriptBridge *javascriptBridge;
+@property (strong, nonatomic) WebViewJavascriptBridge *javascriptBridge;
 
 // Additional Constructors
 -(id) initWithButtonProperties:(NSDictionary*)_buttonProperties;

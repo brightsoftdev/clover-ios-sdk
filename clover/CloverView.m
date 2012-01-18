@@ -59,7 +59,7 @@ static CGFloat disappearDuration = 0.4;
         [self addSubview:activityIndicator];
 
         // Set the javascript bridge
-        self.javascriptBridge = [CloverViewJavascriptBridge javascriptBridgeWithDelegate:self];
+        self.javascriptBridge = [WebViewJavascriptBridge javascriptBridgeWithDelegate:self];
         webView.delegate = self.javascriptBridge;
 
         // Set the button properties
@@ -147,7 +147,7 @@ static CGFloat disappearDuration = 0.4;
 }
 
 // Delegate call back from the javascript bridge
-- (void)javascriptBridge:(CloverViewJavascriptBridge *)bridge receivedMessage:(NSString *)message fromWebView:(UIWebView *)webView {
+- (void)javascriptBridge:(WebViewJavascriptBridge *)bridge receivedMessage:(NSString *)message fromWebView:(UIWebView *)webView {
     NSLog(@"Message from JS :%@", message); 
 }
 
