@@ -32,6 +32,10 @@
     buyButton.center = rootView.center;
     [rootView addSubview:buyButton];
     
+    [Clover onOrder:^(CloverOrder* order) {
+        /* user order here */
+    }
+    
     return YES;
 }
 
