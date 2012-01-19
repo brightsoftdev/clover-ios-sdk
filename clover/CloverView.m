@@ -172,29 +172,24 @@ static CGFloat disappearDuration = 0.4;
 }
 
 -(void) populateWithKnownData {
-    NSMutableDictionary* info = [NSMutableDictionary dictionary];
-
     NSMutableDictionary* sdkInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    @"ios", @"platform"
+                                    @"ios", @"platform",
                                     @"version", [CloverState get].sdkVersion,
                                     nil];
     
-    // Fill the dictionary with data we know about
+    NSMutableDictionary* info = [NSMutableDictionary dictionary];
     [info setObject:[CloverState get].fullName forKey:@"fullName"];
     [info setObject:[CloverState get].phoneNumber forKey:@"phoneNumber"];
     [info setObject:[CloverState get].emailAddress forKey:@"emailAddress"];
     [info setObject:[CloverState getMac] forKey:@"mac"];
     [info setObject:sdkInfo forKey:@"sdkInfo"];
     [info setObject:buttonProperties forKey:@"buttonProperties"];
-
-    // Create the json object
-    NSDictionary* message = [NSDictionary dictionaryWithObjectsAndKeys:
-                             info, @"data",
-                             @"sdk-bootstrap", @"type",
-                             nil];
     
-    NSString* jsonSummary = [message JSONString];
-    [self.javascriptBridge sendMessage:jsonSummary toWebView:self.webView];
+    NSString* json = [[NSDictionary dictionaryWithObjectsAndKeys:
+                              info, @"data",
+                              @"sdk-bootstrap", @"type",
+                              nil] JSONString];
+    [self.javascriptBridge sendMessage:json toWebView:self.webView];
 }
 
 - (void)loadWebView {
