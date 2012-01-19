@@ -9,6 +9,7 @@
 #import "CloverView.h"
 #import "CloverState.h"
 #import <QuartzCore/QuartzCore.h>
+#import "JSONKit.h"
 
 static CGFloat appearDuration = 0.4;
 static CGFloat disappearDuration = 0.4;
@@ -72,7 +73,7 @@ static CGFloat disappearDuration = 0.4;
     // Load a test view
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.clover.com"]];
     [webView loadRequest:requestObj];
-    //[self localTest];
+    [self loadWebView];
 
     // Fill the java script bridge with data we know about
     [self populateWithKnownData];
@@ -173,71 +174,32 @@ static CGFloat disappearDuration = 0.4;
 -(void) populateWithKnownData {
     NSMutableDictionary* info = [NSMutableDictionary dictionary];
 
+    NSMutableDictionary* sdkInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    @"ios", @"platform"
+                                    @"version", [CloverState get].sdkVersion,
+                                    nil];
+    
     // Fill the dictionary with data we know about
     [info setObject:[CloverState get].fullName forKey:@"fullName"];
     [info setObject:[CloverState get].phoneNumber forKey:@"phoneNumber"];
     [info setObject:[CloverState get].emailAddress forKey:@"emailAddress"];
     [info setObject:[CloverState getMac] forKey:@"mac"];
+    [info setObject:sdkInfo forKey:@"sdkInfo"];
     [info setObject:buttonProperties forKey:@"buttonProperties"];
 
     // Create the json object
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:info options:NSJSONWritingPrettyPrinted error:nil];
-    NSString* jsonSummary = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-
-    // Send the json to the webview
+    NSDictionary* message = [NSDictionary dictionaryWithObjectsAndKeys:
+                             info, @"data",
+                             @"sdk-bootstrap", @"type",
+                             nil];
+    
+    NSString* jsonSummary = [message JSONString];
     [self.javascriptBridge sendMessage:jsonSummary toWebView:self.webView];
 }
 
-- (void)localTest {
-    [self.webView loadHTMLString:@""
-     "<!doctype html>"
-     "<html><head>"
-     "  <style type='text/css'>h1 { color:red; }</style>"
-     "</head><body>"
-     "  <h1>Clover Signup</h1>"
-     "  <script>"
-     "  document.addEventListener('WebViewJavascriptBridgeReady', onBridgeReady, false);"
-     "  function onBridgeReady() {"
-     "      var name = document.body.appendChild(document.createElement('text'));"    
-     "      name.innerHTML = 'Name';"
-     "      var nameArea = document.body.appendChild(document.createElement('TEXTAREA'));"
-     "      document.body.appendChild(document.createElement('div'));"
-     ""
-     "      var email = document.body.appendChild(document.createElement('text'));"    
-     "      email.innerHTML = 'email';"
-     "      var emailArea = document.body.appendChild(document.createElement('TEXTAREA'));"
-     "      document.body.appendChild(document.createElement('div'));"
-     ""
-     "      var phone = document.body.appendChild(document.createElement('text'));"    
-     "      phone.innerHTML = 'Phone';"
-     "      var phoneArea = document.body.appendChild(document.createElement('TEXTAREA'));"
-     "      document.body.appendChild(document.createElement('div'));"
-     ""
-     "      var mac = document.body.appendChild(document.createElement('text'));"    
-     "      mac.innerHTML = 'mac';"
-     "      var macArea = document.body.appendChild(document.createElement('TEXTAREA'));"
-     "      document.body.appendChild(document.createElement('div'));"
-     ""
-     "      var button = document.body.appendChild(document.createElement('button'));"
-     "      button.innerHTML = 'Buy';"
-     "      button.onclick = button.ontouchstart = function() { WebViewJavascriptBridge.sendMessage('from the button'); };"
-     "      WebViewJavascriptBridge.setMessageHandler(function(message) {"
-     "          if (message.indexOf('mac=')>=0) {"
-     "              macArea.innerHTML = message.replace('mac=','')"
-     "          }"     
-     "          if (message.indexOf('fullName=')>=0) {"
-     "              nameArea.innerHTML = message.replace('fullName=','')"
-     "          }"
-     "          if (message.indexOf('emailAddress=')>=0) {"
-     "              emailArea.innerHTML = message.replace('emailAddress=','')"
-     "          }"
-     "          if (message.indexOf('phoneNumber=')>=0) {"
-     "              phoneArea.innerHTML = message.replace('phoneNumber=','')"
-     "          }"
-     "      });"
-     "  }"
-     "  </script>"
-     "</body></html>" baseURL:nil];
+- (void)loadWebView {
+    NSString* overlayURL = @"http://marcus.local:8001/static/sdk-overlay.html#WebViewJavascriptBridge=true";
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:overlayURL]]];
 }
 
 #pragma mark Memory management

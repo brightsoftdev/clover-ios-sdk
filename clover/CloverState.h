@@ -25,6 +25,8 @@
 @property (atomic,retain) NSString* phoneNumber;
 @property (atomic,retain) NSString* emailAddress;
 @property (atomic,retain) NSString* fullName;
+@property (atomic,retain) NSString* sdkVersion;
 @property (atomic,copy) CloverOrderHandler orderHandler;
+
 
 @end

@@ -37,6 +37,6 @@
 
 // Filling with known data
 - (void) populateWithKnownData;
-- (void) localTest;
+- (void) loadWebView;
 
 @end
